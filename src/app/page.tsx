@@ -3,7 +3,6 @@ import Footer from "@/components/footer/footer";
 import Header from "@/components/header/header";
 import HeroPage from "@/components/heropage/heropage";
 import SocialCards from "@/components/midea/midia";
-import Image from "next/image";
 
 export default function Home() {
   return (

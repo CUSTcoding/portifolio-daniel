@@ -1,14 +1,22 @@
 import React from "react";
+import Image from "next/image";
 import DanielStory from "./danielAboit";
 
-const cardsData = [
+type CardType = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+};
+
+const cardsData: CardType[] = [
   {
     id: 1,
     title: "Inclusão e Igualdade",
     description: `Uma universidade verdadeiramente grande é aquela que acolhe todas as vozes as fortes, as tímidas, as esquecidas e as silenciadas.
 A inclusão das pessoas com deficiência e a valorização das mulheres não são apenas políticas; são compromissos com a dignidade humana.
 Quando abrimos espaço para todos, descobrimos que a diversidade não é diferença é força.`,
-    image: "../../assets/img/IMG-20241118-WA0019-scaled.jpg"
+    image: "/assets/img/IMG-20241118-WA0019-scaled.jpg"
   },
   {
     id: 2,
@@ -16,7 +24,7 @@ Quando abrimos espaço para todos, descobrimos que a diversidade não é diferen
     description: `A juventude é a energia que move o presente. Ser jovem é ter o poder de questionar, propor e transformar.
 Liderar os estudantes é canalizar essa energia para construir pontes de diálogo, e não muros de distância.
 A minha liderança é participativa, aberta e centrada no valor da escuta porque ninguém lidera sozinho.`,
-    image: "../../assets/img/UEM-CAMPOS.jpg"
+    image: "/assets/img/UEM-CAMPOS.jpg"
   },
   {
     id: 3,
@@ -25,11 +33,11 @@ A minha liderança é participativa, aberta e centrada no valor da escuta porque
 Um espaço onde o estudante se sinta respeitado, ouvido e valorizado.
 Onde a tecnologia facilite a comunicação, a solidariedade supere a burocracia e a ação substitua o silêncio.
 Uma AEU que una o país através da voz de cada estudante.`,
-    image: "../../assets/img/logotipo.jpg"
+    image: "/assets/img/logotipo.jpg"
   }
 ];
 
-function Card({ card, index }) {
+function Card({ card, index }: { card: CardType; index: number }) {
   const isEven = index % 2 === 1; // cards pares alternam layout
 
   return (
@@ -38,12 +46,16 @@ function Card({ card, index }) {
                   ${isEven ? "lg:flex-row-reverse" : "lg:flex-row"}`}
     >
 
-      <img
-        alt={card.title}
-        loading="lazy"
-        className="w-full lg:w-[22.3125rem] object-cover rounded-lg"
-        src={card.image}
-      />
+      <div className="w-full lg:w-[22.3125rem] rounded-lg overflow-hidden">
+        <Image
+          alt={card.title}
+          src={card.image}
+          width={357}
+          height={238}
+          sizes="(max-width: 1024px) 100vw, 22.3125rem"
+          className="w-full h-auto object-cover"
+        />
+      </div>
 
       <div className="w-full flex flex-col lg:p-8 gap-8 lg:gap-4">
         <h2 className="text-[1.5rem] lg:text-2xl font-bold font-poppins capitalize text-white">
